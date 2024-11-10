@@ -1,0 +1,62 @@
+.botao {
+    @apply bg-blue-500 px-4 py-2;
+    @apply text-white rounded-md;
+    @apply hover:bg-blue-700;
+    @apply text-lg;
+  }
+  
+  .botao.verde {
+    @apply bg-green-500 px-4 py-2;
+    @apply text-white rounded-md;
+    @apply hover:bg-green-700;
+    @apply text-lg;
+  }
+  
+  .botao.vermelho {
+    @apply bg-red-500 px-4 py-2;
+    @apply text-white rounded-md;
+    @apply hover:bg-red-700;
+    @apply text-lg;
+  }
+  
+  .botao.purple {
+    @apply bg-purple-500 px-4 py-2;
+    @apply text-white rounded-md;
+    @apply hover:bg-purple-700;
+    @apply text-lg;
+  }
+  
+  .botao.cinza {
+    @apply bg-gray-500 px-4 py-2;
+    @apply text-white rounded-md;
+    @apply hover:bg-gray-700;
+    @apply text-lg;
+    @apply border border-gray-800;
+  }
+  
+  .campo {
+    @apply bg-black bg-opacity-20 px-4 py-2 rounded-md;
+    @apply focus:outline-none;
+    @apply focus:ring-2 focus:ring-opacity-30 focus:ring-white;
+    
+    /* @apply text-white rounded-md;
+    @apply border border-zinc-700;
+    @apply hover:bg-zinc-800; */
+  }
+
+  .input {
+    @apply bg-black bg-opacity-20;
+  }
+  
+  .invisivel {
+    @apply hidden
+  }
+  
+  .semSetas {
+    @apply no-spinners
+  }
+  
+  
+  
+  
+  
