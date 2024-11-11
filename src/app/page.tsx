@@ -4,25 +4,29 @@ import salvarTarefa from "./backend/casos-uso/salvar-tarefa";
 import obterTarefas from "./backend/casos-uso/obter-tarefas";
 import excluirTarefa from "./backend/casos-uso/excluir-tarefa";
 import TarefaLista from "@/components/tarefa-lista";
-import { Tarefa } from "@prisma/client";
+
+import TarefaFormulario from "@/components/tarefa-form";
+import { Tarefa } from "@/core/model/Tarefa";
 
 
 
 export default function Home() {
+
+  const [tarefas, setTarefas] = useState<any>([]); // ou {}
+
   const classNameHome =
     "flex flex-col items-center justify-center h-screen gap-4";
   //const myid = Id.gerar()
 
-  const [nome, setNome] = useState("");
-  const [tarefas, setTarefas] = useState<any>([]); // ou {}
- 
-  async function executeSalvar() {
-    const id = ''
-    const novaTarefa = await salvarTarefa({ id, nome }) 
-    tarefas.push(novaTarefa)
-    setTarefas(tarefas);
- 
-    setNome('');
+  
+  async function executeSalvar(tarefa: Tarefa) {
+    const novaTarefa = await salvarTarefa(tarefa) 
+    // mapear primeiro as tarefas
+    const _tarefas = tarefas.map((t:Tarefa)=>t)
+    // incluir a novaTarefa em novasTarefas
+    _tarefas.push(novaTarefa)
+  
+    setTarefas(_tarefas);
   }
 
   async function executeObter() {
@@ -45,33 +49,24 @@ export default function Home() {
   
   return (
     <div className={classNameHome}>
-      
       <h1>Lista de Tarefas</h1>
-      <div className="p-2 gap-4">
-        <input
-          type="text"
-          value={nome}
-          onChange={(e) => setNome(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter'){
-              executeSalvar()
-            }
-          }}
-            
-          className="text-black"
-        />
-      </div>
-      <div className="flex gap-4">
-        <button className="botao verde" onClick={executeSalvar}>
-          Salva tarefa
-        </button>
-        <button className="botao azul hidden" onClick={executeObter}>
-          Obter tarefas
-        </button>
-      </div>
+
+      <TarefaFormulario salvar={executeSalvar}/>  
       <TarefaLista 
          tarefas={tarefas} 
          excluir={executeExclusao}/>
     </div>
   );
 }
+
+
+
+
+
+{/* CUIDADDO QUANDO IMPORTAR quando eu importei import { Tarefa } from "@/core/model/Tarefa"; */}
+
+      // <div>
+      //   <button className="botao azul hidden" onClick={executeObter}>
+      //     Obter tarefas
+      //   </button>
+      // </div>

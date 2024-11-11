@@ -23,12 +23,9 @@ export default class RepositorioTarefa {
     }
 
     // posso escolher por passar somente o id
-
-
-    // quuando excuir dois em seguida esta dando erro
     async excluir( id: string ){
         return await this.db.tarefa.delete({ 
-            where: {id: id }
+            where: { id: id }
         })
     }
 

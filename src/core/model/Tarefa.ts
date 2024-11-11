@@ -1,5 +1,5 @@
 export interface Tarefa {
-    id: string
+    id?: string
     nome?: string
     concluida?: boolean
 }

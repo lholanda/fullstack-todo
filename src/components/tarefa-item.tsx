@@ -10,12 +10,14 @@ export interface TarefaItemProps {
 
 export default function TarefaItem(props: TarefaItemProps) {
     const classNameTarefaItem = 'flex items-center bg-zinc-900 rounded-md p-2 cursor-pointer gap-4'
+    const { tarefa, excluir } = props
   return (
     <li className={classNameTarefaItem}>
-      <span className="flex-1">{props.tarefa.nome}</span>
+      <span className="flex-1">{tarefa.nome}</span>
       <IconTrash 
           className="text-red-500 hover:text-red-700" 
-          onClick={()=>props.excluir(props.tarefa.id)}/>
+          onClick={()=>excluir(tarefa.id)}/>
+          {/* // o TarefaItem é quem dispara a execucao da exclusao */}
     </li>
   );
 }
