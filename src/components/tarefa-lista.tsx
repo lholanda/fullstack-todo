@@ -10,7 +10,7 @@ export default function TarefaLista(props: TarefaListaProps) {
   const { tarefas, excluir } = props
   return (
     <ul className={`flex flex-col gap-1`}>
-      {tarefas.map((tarefa: Tarefa) => (
+      {tarefas.map((tarefa: any) => (
         <TarefaItem
           key={tarefa.id}
           tarefa={tarefa}

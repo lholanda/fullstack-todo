@@ -4,7 +4,7 @@ import { IconTrash } from "@tabler/icons-react";
 
 export interface TarefaItemProps {
   tarefa: Tarefa;
-  excluir: (id: string | undefined) => void;
+  excluir: (tarefa: Tarefa) => void;
 }
 
 
@@ -16,7 +16,7 @@ export default function TarefaItem(props: TarefaItemProps) {
       <span className="flex-1">{tarefa.nome}</span>
       <IconTrash 
           className="text-red-500 hover:text-red-700" 
-          onClick={()=>excluir(tarefa.id)}/>
+          onClick={()=>excluir(tarefa)}/>
           {/* // o TarefaItem é quem dispara a execucao da exclusao */}
     </li>
   );
