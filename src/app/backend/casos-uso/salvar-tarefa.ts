@@ -10,9 +10,12 @@ export default async function salvarTarefa(tarefa: Tarefa){
     }
 
     const novaTarefa = {
-        ...tarefa,
-        id: Id.gerar()
+        id: Id.gerar(),
+        concluida: false,
+        ...tarefa
     }
+
+    console.log(novaTarefa) // so imprime no terninal extenso .ts
 
     const repo = new RepositorioTarefa()
 

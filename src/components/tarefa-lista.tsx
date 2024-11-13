@@ -5,6 +5,7 @@ import TarefaItem from "./tarefa-item";
 export interface TarefaListaProps {
     tarefas: Tarefa[]
     excluir: (id: string) => void
+    alternar: (tarefa: Tarefa) => void
 }
 export default function TarefaLista(props: TarefaListaProps) {
   const { tarefas, excluir } = props
@@ -15,6 +16,7 @@ export default function TarefaLista(props: TarefaListaProps) {
           key={tarefa.id}
           tarefa={tarefa}
           excluir={() => excluir(tarefa.id)}
+          //lternar={()=>{}}
         />
       ))}
     </ul>

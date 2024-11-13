@@ -1,6 +1,6 @@
 
 import { Tarefa } from "@/core/model/Tarefa";
-import { IconTrash } from "@tabler/icons-react";
+import { IconCheck, IconTrash } from "@tabler/icons-react";
 
 export interface TarefaItemProps {
   tarefa: Tarefa;
@@ -18,6 +18,8 @@ export default function TarefaItem(props: TarefaItemProps) {
           className="text-red-500 hover:text-red-700" 
           onClick={()=>excluir(tarefa)}/>
           {/* // o TarefaItem é quem dispara a execucao da exclusao */}
+     
+      <IconCheck className={tarefa.concluida ? `text-green-500`:`text-gray-700`}/>
     </li>
   );
 }

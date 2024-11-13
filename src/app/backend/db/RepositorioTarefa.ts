@@ -34,4 +34,8 @@ export default class RepositorioTarefa {
         return await this.db.tarefa.findMany()
     }
 
+    // fazer paginacao
+    async obterPorId(id: string){
+        return await this.db.tarefa.findUnique({where: { id }})
+    }
 }

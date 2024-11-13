@@ -2,19 +2,27 @@
 import TarefaLista from "@/components/tarefa-lista";
 import TarefaFormulario from "@/components/tarefa-form";
 import useTarefas from "./hooks/use-tarefas";
+import useMain from "./hooks/useMain";
 
 export default function Home() {
-  const { tarefas, adicionar, excluir } = useTarefas()
 
-  const classNameHome =
-    "flex flex-col items-center justify-center h-screen gap-4";
+  const { tasks, 
+          saveTask,
+          deleteTask
+        } = useTarefas()
+
+  const {} = useMain()
+
+
+  const classNameHome = "flex flex-col items-center justify-center h-screen gap-4";
   return (
     <div className={classNameHome}>
       <h1>Lista de Tarefas</h1>
-      <TarefaFormulario salvar={adicionar}/>  
+      <TarefaFormulario salvar={saveTask}/>  
       <TarefaLista 
-         tarefas={tarefas} 
-         excluir={excluir}/>
+         tarefas={tasks} 
+         excluir={deleteTask}
+         alternar={()=>{}}/>
     </div>
   );
 }

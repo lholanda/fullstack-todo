@@ -5,40 +5,49 @@ import obterTarefas from "../backend/casos-uso/obter-tarefas";
 import excluirTarefa from "../backend/casos-uso/excluir-tarefa";
 
 export default function useTarefas(){
-    const [tarefas, setTarefas] = useState<Tarefa[]>([]); 
+    const [tasks, setTasks] = useState<Tarefa[]>([]); 
 
     useEffect(()=>{
-        carregarTarefas()
+
+        readTask()
     },[])
+
+
+    async function readTask(){
+        const _tasks = await obterTarefas();
+        setTasks(_tasks)
+    }
+
+    async function saveTask(tarefa: Tarefa){
+       const _task = await salvarTarefa(tarefa) 
+       setTasks([...tasks, _task])  
+    }
+
+    async function deleteTask(id: string){
+        const _task = await excluirTarefa(id)
+        const _newTasks = tasks.filter( (t) => (t.id !== _task.id) )
+        setTasks(_newTasks)
+    }
+
     
-    async function carregarTarefas(){
-        const tarefas = await obterTarefas();
-        setTarefas(tarefas);
-    }
 
-    async function adicionar(tarefa: Tarefa){
-        const novaTarefa = await salvarTarefa(tarefa) 
-        const _tarefas = tarefas.map((t:Tarefa)=>t)
-        _tarefas.push(novaTarefa)
-        setTarefas(_tarefas)
-
-        // setTarefas([...tarefas, novaTarefa])
-    }
-
-    // exclui e atualiza as tarefas
-    async function excluir(id: string) {
-      const tarefa = await excluirTarefa(id);
-      //const tarefas = await obterTarefas();  // poderia fazer assim mas iria mistrura as responsabilidades
-      const novasTarefas = tarefas.filter((x: Tarefa ) => x.id !== tarefa.id)
-     setTarefas(novasTarefas);
-    }
 
     return {
-        tarefas, 
-        adicionar,
-        excluir
+        tasks, 
+        readTask,
+        saveTask,
+        deleteTask
     }
     
 }
 
+/*
+// baixa performance, muito codigo
+async function adicionar(tarefa: Tarefa){
+    const novaTarefa = await salvarTarefa(tarefa) 
+    const _tarefas = tarefas.map((t:Tarefa)=>t)
+    _tarefas.push(novaTarefa)
+    setTarefas(_tarefas)
+}
+*/
 
